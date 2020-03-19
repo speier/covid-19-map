@@ -12,20 +12,35 @@ export function mapData(confirmedCsv, deathsCsv, recoveredCsv) {
     return count || null
   }
 
-  const properties = confirmed.map(row => {
-    const confirmedCount = numOfCases(row)
-    const deathsCount = 0
-    const recoveredCount = 0
+  function matchingCases(dataset, country, state) {
+    let cnt = 0
+    dataset.forEach(row => {
+      if (row['Country/Region'] === country && row['Province/State'] === state) {
+        cnt = numOfCases(row)
+        return
+      }
+    })
+    return cnt
+  }
 
+  const properties = confirmed.map(row => {
     const country = row['Country/Region']
+    const state = row['Province/State']
+    const coord = [parseFloat(row.Long), parseFloat(row.Lat)]
+
+    const confirmedCount = numOfCases(row)
+    const deathsCount = matchingCases(deaths, country, state)
+    const recoveredCount = matchingCases(recovered, country, state)
+    const activeCount = confirmedCount - (deathsCount + recoveredCount)
+
     return {
-      country: country,
-      region: row['Province/State'] || country,
-      coord: [parseFloat(row.Long), parseFloat(row.Lat)],
-      confirmedCount: confirmedCount,
-      deathsCount: deathsCount,
-      recoveredCount: recoveredCount,
-      activeCount: confirmedCount - (deathsCount + recoveredCount)
+      country,
+      state,
+      coord,
+      confirmedCount,
+      deathsCount,
+      recoveredCount,
+      activeCount
     }
   })
 

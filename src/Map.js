@@ -50,7 +50,11 @@ export function Map({ dataUrls }) {
       >
         {popupInfo && (
           <Popup lnglat={popupInfo.lnglat}>
-            {popupInfo.feature.country}, {popupInfo.feature.region}
+            {
+              (popupInfo.feature.country && popupInfo.feature.state)
+                ? (<div>{popupInfo.feature.country}, {popupInfo.feature.state}</div>)
+                : (<div>{popupInfo.feature.country}</div>)
+            }
             <ul style={{ margin: 0 }}>
               <li>Confirmed: {popupInfo.feature.confirmedCount}</li>
               <li>Deaths: {popupInfo.feature.deathsCount}</li>
