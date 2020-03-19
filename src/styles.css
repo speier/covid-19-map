@@ -1,0 +1,10 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.Map {
+  min-height: 500px;
+  justify-content: center;
+  position: relative;
+}
