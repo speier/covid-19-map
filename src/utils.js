@@ -9,7 +9,7 @@ export function mapData(confirmedCsv, deathsCsv, recoveredCsv) {
     const keys = Object.keys(row)
     const last = keys[keys.length - 1]
     const count = parseInt(row[last], 10)
-    return isNaN(count) || count <= 0 ? null : count
+    return count || null
   }
 
   const properties = confirmed.map(row => {
@@ -17,8 +17,10 @@ export function mapData(confirmedCsv, deathsCsv, recoveredCsv) {
     const deathsCount = 0
     const recoveredCount = 0
 
+    const country = row['Country/Region']
     return {
-      name: row['Country/Region'],
+      country: country,
+      region: row['Province/State'] || country,
       coord: [parseFloat(row.Long), parseFloat(row.Lat)],
       confirmedCount: confirmedCount,
       deathsCount: deathsCount,

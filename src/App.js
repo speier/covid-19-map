@@ -1,6 +1,5 @@
 import React from 'react'
 import { MemoizedMap as Map } from './Map'
-import './styles.css'
 
 const dataUrls = {
   confirmed:
@@ -26,6 +25,7 @@ export default function App() {
           <a href="https://l7.antv.vision/en">L7 Geospatial Visualization</a>
         </h2>
       </div>
+      <button className="text-red-300">Do not click me</button>
       <div className="Map">
         <Map dataUrls={dataUrls} />
       </div>

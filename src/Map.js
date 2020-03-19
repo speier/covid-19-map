@@ -50,7 +50,7 @@ export function Map({ dataUrls }) {
       >
         {popupInfo && (
           <Popup lnglat={popupInfo.lnglat}>
-            {popupInfo.feature.name}
+            {popupInfo.feature.country}, {popupInfo.feature.region}
             <ul style={{ margin: 0 }}>
               <li>Confirmed: {popupInfo.feature.confirmedCount}</li>
               <li>Deaths: {popupInfo.feature.deathsCount}</li>
@@ -101,7 +101,7 @@ export function Map({ dataUrls }) {
               opacity: 0.6
             }}
           >
-            <LayerEvent type="mousemove" handler={showPopup} />
+            <LayerEvent type="click" handler={showPopup} />
           </PointLayer>
         ]}
       </MapboxScene>
