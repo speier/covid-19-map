@@ -12,21 +12,13 @@ const dataUrls = {
 
 export default function App() {
   return (
-    <div>
-      <div className="App">
-        <h1>Novel Coronavirus (COVID-19) Map</h1>
-        <h2>
-          Based on time series data provided by{' '}
-          <a href="https://github.com/CSSEGISandData/COVID-19">
-            {' '}
-            Johns Hopkins CSSE
-          </a>{' '}
-          uses{' '}
-          <a href="https://l7.antv.vision/en">L7 Geospatial Visualization</a>
-        </h2>
+    <div className="h-screen">
+      <div className="bg-gray-800 px-4 py-4">
+        <div className="text-gray-300">
+          Novel Coronavirus (COVID-19) map based on time series data provided by <a className="text-gray-500" href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins CSSE</a> uses <a className="text-gray-500" href="https://l7.antv.vision/en">L7 Geospatial Visualization</a>
+        </div>
       </div>
-      <button className="text-red-300">Do not click me</button>
-      <div className="Map">
+      <div className="relative h-full">
         <Map dataUrls={dataUrls} />
       </div>
     </div>
